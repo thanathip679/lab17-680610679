@@ -48,7 +48,7 @@ export const useEnrollmentStore = create<EnrollmentStore>()(
               ? {
                   ...course,
                   instructors: course.instructors.filter(
-                    (name) => name !== instructor,
+                    (inst) => inst.name !== instructor, // แก้ไขตรงนี้ให้ใช้ object .name ตาม Type ใหม่
                   ),
                 }
               : course,
@@ -61,6 +61,14 @@ export const useEnrollmentStore = create<EnrollmentStore>()(
           enrollments: state.enrollments.filter((e) => e.courseId !== courseId),
         })),
     }),
-    // เก็บเฉพาะ students/courses ลง localStorage — enrollments ไม่ persist
+    {
+      
+      name: "lab17-2569-680610679", 
+      
+      partialize: (state) => ({
+        students: state.students,
+        courses: state.courses,
+      }),
+    }
   ),
 );
